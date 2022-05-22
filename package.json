@@ -8,7 +8,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "npx aws-cdk"
+    "cdk": "cdk"
   },
   "devDependencies": {
     "@types/jest": "^27.5.0",
