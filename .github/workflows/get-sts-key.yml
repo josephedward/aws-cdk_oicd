@@ -1,0 +1,22 @@
+
+deploy-infrastructure:
+   runs-on: ubuntu-latest
+   permissions:
+     id-token: write
+     contents: read
+   steps:
+     - name: Git clone the repository
+       uses: actions/checkout@v1
+     - name: Assume role using OIDC
+       uses: aws-actions/configure-aws-credentials@master
+       with:
+         role-to-assume: arn:aws:iam::<your-account-id-here>:role/github-ci-role
+         aws-region: ${{ env.AWS_REGION }}
+     - uses: actions/setup-node@v2
+       with:
+         node-version: "14"
+     - run: yarn install
+     - name: Synth infrastructure stack
+       run: yarn --cwd packages/infrastructure cdk synth
+     - name: Deploy infrastructure stack
+       run: yarn --cwd packages/infrastructure cdk deploy --require-approval never
