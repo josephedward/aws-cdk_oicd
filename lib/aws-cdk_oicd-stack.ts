@@ -23,7 +23,7 @@ export class AwsCdkOicdStack extends Stack {
     });
 
     const githubOrganisation = "josephedward";
-    const repoName = "aws-cdk-example";
+    const repoName = "iot-kinesis-lambda-example";
     /**
      * Create a principal for the OpenID; which can allow it to assume
      * deployment roles.
